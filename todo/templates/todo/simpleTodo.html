@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}TodoList{% endblock %}</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/ajax.js"></script>
+    </head>
+    <body>
+        <!--顶部banner-->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <h1>TodoList <small>powered by Django</small></h1>
+                </div>
+            </div>
+        </nav>
+        <!-- 主体 -->
+        <div id="todo" class="container">
+            {% block show %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div id="list"  class="well row">
+                        <div class="col-md-12">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <h3 class="text-success">待办事项</h3>
+                            </thead>
+                            <tbody id="list_table">
+                                
+                            </tbody>
+                        </table>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success " data-toggle="modal" data-target="#myModal">
+                          Add
+                        </button>
+                        </div> 
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="done" class="well">
+                        <table  class="table table-hover table-bordered">
+                            <thead>
+                                <h3 class="text-success">完成事项</h3>
+                            </thead>
+                            <tbody id="dine_table">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
+            </div>
+            {% endblock show %}
+        </div>
+        <!-- add模态框 -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add TODO</h4>
+              </div>
+              <form >{% csrf_token %}
+                  <div class="modal-body">
+                <textarea name="todo" class="form-control" rows="3" id="txtodo" required="required"></textarea>
+                <fieldset>
+                        <label class="control-label col-sm-4">设置优先级：</label>
+                      <div class="form-group col-sm-8">
+                          <label class="radio-inline" for="priority">
+                        <input required="required" type="radio" name="priority" value="1"/>
+                        <span class="label label-danger">重要</span>
+                    </label>          
+                    <label class="radio-inline" for="priority">
+                        <input type="radio" name="priority" value="2"/>
+                        <span class="label label-warning">普通</span>
+                    </label>          
+                    <label class="radio-inline" for="priority">
+                        <input type="radio" name="priority" value="3"/>
+                        <span class="label label-success">次要</span>
+                    </label>
+                      </div>
+                    
+                </fieldset>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit"  id="send" class="btn btn-primary">Go</button>
+              </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+        <!-- update模态框 -->
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add TODO</h4>
+              </div>
+              <form >{% csrf_token %}
+                  <div class="modal-body">
+                <textarea name="todo" class="form-control" rows="3" id="txtodo" required="required"></textarea>
+                <fieldset>
+                        <label class="control-label col-sm-4">设置优先级：</label>
+                      <div class="form-group col-sm-8">
+                          <label class="radio-inline" for="priority">
+                        <input required="required" type="radio" name="priority" value="1"/>
+                        <span class="label label-danger">重要</span>
+                    </label>          
+                    <label required="required" class="radio-inline" for="priority">
+                        <input type="radio" name="priority" value="2"/>
+                        <span class="label label-warning">普通</span>
+                    </label>          
+                    <label required="required" class="radio-inline" for="priority">
+                        <input type="radio" name="priority" value="3"/>
+                        <span class="label label-success">次要</span>
+                    </label>
+                      </div>
+                    
+                </fieldset>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit"  id="up" class="btn btn-primary">Go</button>
+              </div>
+              </form>
+              
+            </div>
+          </div>
+        </div>
+    
+
+        <script src="/static/js/bootstrap.min.js"></script>
+    </body>
+</html>
