@@ -14,7 +14,7 @@ from rest_framework.response import Response
 
 class TodoViewSet(viewsets.ModelViewSet):
     """
-    查看、编辑Tode的界面
+    查看、编辑Todo的界面
     """
     queryset = Todo.objects.order_by('-pubtime')
     serializer_class = TodoSerializer
